@@ -1,0 +1,4 @@
+CREATE TABLE Users (
+    Id  INT64 NOT NULL,
+    Name    STRING(1024)
+) PRIMARY KEY (Id);

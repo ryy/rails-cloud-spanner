@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  "/users":
+    post:
+      tags:
+        - User
+      summary:
+        "Create user"
+      description:
+        "Create user"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Name:
+                  type: string
+                  example: "hoge"
+      responses:
+        201:
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/User'
+        422:
+          description: "Unprocessable Entity"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/UnprocessableEntity'
+        500:
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/InternalServerError'
+    get:
+      tags:
+        - User
+      summary:
+        "Returns all users"
+      description:
+        "Returns all users"
+      responses:
+        200:
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: '#/components/schemas/User'
+  "/users/{Id}":
+    get:
+      summary:
+        "Get user"
+      description:
+        "Get user"
+      tags:
+        - User
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          description: User Id
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/User'
+        404:
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/NotFound'
+        500:
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/InternalServerError'
+    patch:
+      summary:
+        "Update user"
+      description:
+        "Update user"
+      tags:
+        - User
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          description: User Id
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Name:
+                  type: string
+                  example: "hoge"
+      responses:
+        200:
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/User'
+        404:
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/NotFound'
+        422:
+          description: "Unprocessable Entity"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/UnprocessableEntity'
+        500:
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/InternalServerError'
+    delete:
+      summary:
+        "Delete user"
+      description:
+        "Delete user"
+      tags:
+        - User
+      parameters:
+        - name: Id
+          in: path
+          required: true
+          description: User Id
+          schema:
+            type: string
+      responses:
+        204:
+          description: "Success"
+        404:
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/NotFound'
+        500:
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/InternalServerError'
+components:
+  schemas:
+    User:
+      properties:
+        Id:
+          type: "integer"
+        Name:
+          type: "string"
+      example:
+        Id: "1"
+        Name: "Taro"
+    NotFound:
+      properties:
+        error:
+          type: "string"
+          example: "Not Found"
+    UnprocessableEntity:
+      properties:
+        error:
+          type: "string"
+          example: "Invalid error"
+        error_details:
+          type: array
+          items:
+            type: "string"
+            example: "Name has already been taken"
+    InternalServerError:
+      properties:
+        error:
+          type: "string"
+          example: "Internal Server Error"
