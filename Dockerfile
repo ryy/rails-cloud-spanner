@@ -1,10 +1,5 @@
 FROM ruby:2.6.9
 
-#RUN apt-get update -y && \
-#    apt-get install default-mysql-client nodejs npm -y && \
-#    npm uninstall yarn -g && \
-#    npm install yarn -g -y
-
 RUN apt-get update -y
 
 COPY entrypoint.sh /usr/bin/
@@ -19,9 +14,9 @@ RUN mkdir $APP
 WORKDIR $APP
 
 COPY Gemfile* ./
+COPY local_gems ./local_gems
 
 RUN bundle install -j4
-#RUN yarn install
 
 COPY . $APP
 

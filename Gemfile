@@ -26,6 +26,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rack-cors'
 
 gem 'activerecord-spanner-adapter'
+# gem 'activerecord-spanner-adapter', :path => './local_gems/ruby-spanner-activerecord'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

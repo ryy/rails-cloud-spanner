@@ -31,3 +31,6 @@
 /config/master.key
 
 .idea
+
+local_gems/*
+!/local_gems/.keep
