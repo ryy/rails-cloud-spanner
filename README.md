@@ -26,7 +26,7 @@ $ root:/app# bin/rails db:seed
 ```
 
 ## Open Swagger
-API is defined to CRUD the Users table.
+API is defined to CRUD the users table.
 ```
 $ open http://localhost:8080
 ```
