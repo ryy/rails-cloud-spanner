@@ -8,7 +8,7 @@ paths:
   "/users":
     post:
       tags:
-        - User
+        - user
       summary:
         "Create user"
       description:
@@ -19,7 +19,7 @@ paths:
             schema:
               type: object
               properties:
-                Name:
+                name:
                   type: string
                   example: "hoge"
       responses:
@@ -29,7 +29,7 @@ paths:
             application/json:
               schema:
                 type: "object"
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/user'
         422:
           description: "Unprocessable Entity"
           content:
@@ -46,7 +46,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
     get:
       tags:
-        - User
+        - user
       summary:
         "Returns all users"
       description:
@@ -59,20 +59,20 @@ paths:
               schema:
                 type: "array"
                 items:
-                  $ref: '#/components/schemas/User'
-  "/users/{Id}":
+                  $ref: '#/components/schemas/user'
+  "/users/{id}":
     get:
       summary:
         "Get user"
       description:
         "Get user"
       tags:
-        - User
+        - user
       parameters:
-        - name: Id
+        - name: id
           in: path
           required: true
-          description: User Id
+          description: user id
           schema:
             type: string
       responses:
@@ -82,7 +82,7 @@ paths:
             application/json:
               schema:
                 type: "object"
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/user'
         404:
           description: "Not Found"
           content:
@@ -103,12 +103,12 @@ paths:
       description:
         "Update user"
       tags:
-        - User
+        - user
       parameters:
-        - name: Id
+        - name: id
           in: path
           required: true
-          description: User Id
+          description: user id
           schema:
             type: string
       requestBody:
@@ -117,7 +117,7 @@ paths:
             schema:
               type: object
               properties:
-                Name:
+                name:
                   type: string
                   example: "hoge"
       responses:
@@ -127,7 +127,7 @@ paths:
             application/json:
               schema:
                 type: "object"
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/user'
         404:
           description: "Not Found"
           content:
@@ -155,12 +155,12 @@ paths:
       description:
         "Delete user"
       tags:
-        - User
+        - user
       parameters:
-        - name: Id
+        - name: id
           in: path
           required: true
-          description: User Id
+          description: user id
           schema:
             type: string
       responses:
@@ -182,15 +182,15 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
 components:
   schemas:
-    User:
+    user:
       properties:
-        Id:
-          type: "integer"
-        Name:
+        id:
+          type: "string"
+        name:
           type: "string"
       example:
-        Id: "1"
-        Name: "Taro"
+        id: "1"
+        name: "Taro"
     NotFound:
       properties:
         error:
@@ -205,7 +205,7 @@ components:
           type: array
           items:
             type: "string"
-            example: "Name has already been taken"
+            example: "name has already been taken"
     InternalServerError:
       properties:
         error:

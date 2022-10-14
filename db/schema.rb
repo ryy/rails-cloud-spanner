@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_25_165258) do
+ActiveRecord::Schema.define(version: 1) do
 
-  create_table "Users", primary_key: "UserId", id: { limit: 8 }, force: :cascade do |t|
-    t.string "Name", limit: 1024
+  create_table "users", id: :string, force: :cascade do |t|
+    t.string "name", null: false
+    t.time "created_at", null: false
+    t.time "updated_at", null: false
   end
 
 end
