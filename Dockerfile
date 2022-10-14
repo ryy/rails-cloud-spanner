@@ -1,4 +1,4 @@
-FROM ruby:2.6.9
+FROM ruby:3.1.2
 
 RUN apt-get update -y
 
